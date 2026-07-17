@@ -3,7 +3,14 @@ import Base from '../layouts/Base.astro';
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
 ---
 <Base title="O Guia · Família SOL na Estrada Real">
-  <h1>🧭 O Guia da Expedição</h1>
-  <p>O planejamento completo que usamos na estrada — rota dia a dia, história de cada lugar, missões das meninas, hotéis, restaurantes, custos e checklist. Funciona offline.</p>
-  <p><a class="btn" href={base + 'guia.html'}>Abrir o Guia completo →</a></p>
+  <h1 style="margin-top:26px">🧭 O Guia da Expedição</h1>
+  <p class="meta">O planejamento completo que orienta a viagem — rota dia a dia com navegação no Maps, história de cada lugar, missões de Helena e Maitê, hotéis, restaurantes, custos e checklist. Navegue aqui mesmo ou salve no celular para usar <b>offline</b> na estrada.</p>
+  <p style="display:flex;gap:10px;flex-wrap:wrap">
+    <a class="btn" href={base + 'guia.html'} target="_blank" rel="noopener">Abrir em tela cheia ↗</a>
+    <a class="btn claro" href={base + 'guia.html'} download="Guia_Ferias_Familia_SOL.html">⬇️ Baixar para usar offline</a>
+  </p>
+  <div style="border:1px solid var(--linha);border-radius:18px;overflow:hidden;box-shadow:var(--sombra);margin:14px 0">
+    <iframe src={base + 'guia.html'} title="Guia da Família SOL" style="width:100%;height:calc(100vh - 130px);min-height:560px;border:0;display:block;background:#faf5ec"></iframe>
+  </div>
+  <p class="meta">💡 No celular: baixe o arquivo e abra no navegador — funciona sem internet (só os botões de Maps/YouTube/WhatsApp precisam de sinal).</p>
 </Base>
