@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
 const mods = import.meta.glob('./dias/*.md', { eager: true });
 const dias = Object.values(mods).sort((a,b)=>a.frontmatter.dia-b.frontmatter.dia);
 ---
