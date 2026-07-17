@@ -3,29 +3,44 @@ import Base from '../layouts/Base.astro';
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
 const mods = import.meta.glob('./dias/*.md', { eager: true });
 const dias = Object.values(mods).sort((a,b)=>a.frontmatter.dia-b.frontmatter.dia);
+const rota = [
+  ['Brasília','20/07',''],['Ouro Preto','20–23',''],['Congonhas','23/07',''],['S. J. del-Rei','23–24',''],
+  ['Tiradentes','24–26',''],['Cunha','26–27',''],['Paraty','27–31','mar'],['Trindade','30/07','mar'],['Brasília','01/08','']
+];
 ---
 <Base>
-  <div style="text-align:center;padding:34px 0 10px">
-    <span class="selo">☀️ Julho de 2026 · Caminho Velho</span>
-    <h1>A Família <em style="color:var(--ouro2);font-style:normal">SOL</em> no rastro do ouro</h1>
-    <p class="meta" style="max-width:560px;margin:0 auto">Mário, Vicência, Helena (11) e Maitê (7) — 3.050 km de Brasília a Paraty pela Estrada Real: minas, profetas, uma maria-fumaça de 1881 e o mar no final.</p>
+  <section class="hero" slot="hero">
+    <span class="sol">☀️</span>
+    <span class="selo">Julho de 2026 · Caminho Velho da Estrada Real</span>
+    <h1>A Família <em>SOL</em><br>no rastro do ouro</h1>
+    <p class="sub">Mário, Vicência, Helena (11) e Maitê (7) — 3.050 km de Brasília a Paraty: minas de verdade, os 12 Profetas, uma maria-fumaça de 1881 e o mar no final.</p>
+    <div class="cta">
+      <a class="btn" href={base + 'dias/dia-01/'}>Começar pelo Dia 1 →</a>
+      <a class="btn claro" href={base + 'roteiro/'}>🧭 O guia da expedição</a>
+    </div>
+  </section>
+
+  <div class="rota">
+    {rota.map(r => (<span class={'rstop ' + r[2]}><b>{r[0]}</b>{r[1]}</span>))}
   </div>
 
-  <div class="card" style="text-align:center">
-    🐴🔔 <b>13 dias, 13 histórias.</b> Acompanhe a expedição dia a dia — ou comece pelo <a href={base + 'roteiro/'}>guia completo</a> que planejou tudo isso.
-  </div>
-
-  <h2>📖 O diário de bordo</h2>
+  <h2 class="sec">O diário de bordo</h2>
+  <p class="lead">Treze dias, treze histórias — com as missões da Caçadora de Carimbos e as crônicas da Cronista-Chefe.</p>
   <div class="grid">
-    {dias.map(d => (
-      <a class="dcard" href={base + 'dias/dia-' + String(d.frontmatter.dia).padStart(2,'0') + '/'}>
-        <img src={base + 'fotos/dia-' + String(d.frontmatter.dia).padStart(2,'0') + '/capa.jpg'} alt="" onerror="this.style.display='none'" loading="lazy" />
+    {dias.map(d => {
+      const slug = 'dia-' + String(d.frontmatter.dia).padStart(2,'0');
+      return (
+      <a class="dcard" href={base + 'dias/' + slug + '/'}>
+        <span class="cover">
+          <img src={base + 'fotos/' + slug + '/capa.jpg'} alt="" loading="lazy" onerror="this.remove()" />
+          <span class="badge">Dia {d.frontmatter.dia} · {d.frontmatter.data}</span>
+        </span>
         <span class="tx">
-          <span class="num">Dia {d.frontmatter.dia} · {d.frontmatter.data}</span>
           <b>{d.frontmatter.title}</b>
-          <span class="mut">{d.frontmatter.trajeto}</span>
+          <span class="mut">🛣️ {d.frontmatter.trajeto}</span>
+          <span class="ler">Ler o dia →</span>
         </span>
       </a>
-    ))}
+    )})}
   </div>
 </Base>
