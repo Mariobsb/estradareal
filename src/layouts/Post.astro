@@ -1,0 +1,12 @@
+---
+import Base from './Base.astro';
+const { frontmatter } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+<Base title={frontmatter.title + ' · Família SOL na Estrada Real'}>
+  <p style="margin-top:26px"><span class="selo">Dia {frontmatter.dia} · {frontmatter.data}</span></p>
+  <h1>{frontmatter.title}</h1>
+  <p class="meta">🛣️ {frontmatter.trajeto} · {frontmatter.km}</p>
+  <article><slot /></article>
+  <p><a class="btn" href={base}>← Todos os dias</a></p>
+</Base>
