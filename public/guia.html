@@ -280,7 +280,7 @@ a.tel,a.telx{color:var(--terra);font-weight:700;text-decoration:none;white-space
   <p class="lead">Toque em cada dia para abrir. Horários testados contra os dias de fechamento de museus e o horário da serra. Detalhes e análises: abas História, Hotéis e Comer & Fazer.</p>
   <div class="card" id="mapa-viagem">
     <h3 style="margin:0 0 4px">🗺️ Mapa da expedição <span class="mini">· onde estamos e quanto falta</span></h3>
-    <p class="mini" style="margin:2px 0 8px">Escolha a etapa (ou use o GPS no celular) — a linha dourada mostra o já percorrido. Quilometragem pelo plano de viagem (~3.050 km com as rodagens locais).</p>
+    <p class="mini" style="margin:2px 0 8px">Escolha a etapa (ou use o GPS no celular) — a linha dourada mostra o já percorrido. Quilometragem pelo plano (~3.050 km com as rodagens locais).</p>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px">
       <select id="etapa" style="flex:1;min-width:200px;padding:9px 10px;border:1px solid var(--linha);border-radius:10px;background:#fff;font-size:14px;font-weight:600;color:var(--ink)"></select>
       <button id="gpsbtn" style="border:1px solid var(--linha);background:var(--papel2);border-radius:10px;padding:9px 14px;font-weight:700;font-size:13px;cursor:pointer">📍 GPS</button>
@@ -290,22 +290,72 @@ a.tel,a.telx{color:var(--terra);font-weight:700;text-decoration:none;white-space
       <div style="flex:1;min-width:96px;background:var(--papel2);border-radius:12px;padding:8px 10px;text-align:center"><b id="kmfalta" style="font-size:18px;color:var(--azul)">3.050</b><span class="mini" style="display:block">km a rodar</span></div>
       <div style="flex:1;min-width:96px;background:var(--papel2);border-radius:12px;padding:8px 10px;text-align:center"><b id="kmpct" style="font-size:18px;color:var(--verde)">0%</b><span class="mini" style="display:block">da viagem</span></div>
     </div>
-    <div style="height:10px;background:var(--papel2);border-radius:999px;overflow:hidden;margin-bottom:10px"><div id="kmbar" style="height:100%;width:0%;background:linear-gradient(90deg,var(--ouro),var(--terra));border-radius:999px;transition:width .4s"></div></div>
-    <svg viewBox="0 0 360 470" style="width:100%;max-width:420px;display:block;margin:0 auto;background:linear-gradient(180deg,#f7f1e2,#efe4cc);border:1px solid var(--linha);border-radius:14px">
-      <style>.mlbl{font:700 11px sans-serif;fill:#6b5b40}.mdot{fill:#fffdf8;stroke:var(--ouro);stroke-width:2.5}.mdot.mar{stroke:var(--azul)}</style>
-      <text x="231.3" y="445.5" style="font:800 10px sans-serif;fill:#7ba3c4;letter-spacing:2px">OCEANO ATLÂNTICO</text>
-      <polyline id="rota-todo" points="" fill="none" stroke="#cbbfa4" stroke-width="3" stroke-dasharray="5 5" stroke-linejoin="round" stroke-linecap="round"/>
-      <polyline id="rota-feita" points="" fill="none" stroke="var(--ouro)" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round"/>
-      <circle cx="58.9" cy="50.1" r="4" class="mdot"/><circle cx="112.6" cy="120.4" r="4" class="mdot"/><circle cx="199.6" cy="168.6" r="4" class="mdot"/><circle cx="268.2" cy="253.2" r="4" class="mdot"/><circle cx="291.5" cy="276.3" r="4" class="mdot"/><circle cx="272.4" cy="281.7" r="4" class="mdot"/><circle cx="251.2" cy="313.2" r="4" class="mdot"/><circle cx="255.9" cy="311.7" r="4" class="mdot"/><circle cx="213.5" cy="374.7" r="4" class="mdot"/><circle cx="214.0" cy="408.1" r="4" class="mdot"/><circle cx="227.3" cy="415.5" r="4" class="mdot mar"/><circle cx="299.5" cy="343.7" r="4" class="mdot"/>
-      <text x="54.9" y="42.1" class="mlbl">Brasília</text><text x="301.5" y="271.3" class="mlbl">Ouro Preto</text><text x="276.2" y="251.2" class="mlbl">BH</text><text x="173.2" y="317.2" class="mlbl">S.J.del-Rei</text><text x="265.9" y="321.7" class="mlbl">Tiradentes</text><text x="162.0" y="410.1" class="mlbl">Cunha</text><text x="237.3" y="421.5" class="mlbl">Paraty</text><text x="266.4" y="293.7" class="mlbl">Congonhas</text><text x="121.6" y="122.4" class="mlbl">Paracatu</text><text x="208.6" y="170.6" class="mlbl">Três Marias</text><text x="222.5" y="378.7" class="mlbl">Passa Quatro</text><text x="231.5" y="355.7" class="mlbl">Juiz de Fora</text>
-      <g id="marcador" style="transition:transform .4s"><circle r="11" fill="#fffdf8" stroke="var(--terra)" stroke-width="2.5"/><text y="4.5" text-anchor="middle" style="font-size:12px">🚗</text></g>
+    <div style="height:10px;background:var(--papel2);border-radius:999px;overflow:hidden;margin-bottom:12px"><div id="kmbar" style="height:100%;width:0%;background:linear-gradient(90deg,var(--ouro),var(--terra));border-radius:999px;transition:width .4s"></div></div>
+    <svg viewBox="0 0 380 510" style="width:100%;max-width:440px;display:block;margin:0 auto;border-radius:14px;box-shadow:var(--sombra)">
+      <defs>
+        <radialGradient id="pg" cx="35%" cy="25%" r="110%"><stop offset="0%" stop-color="#faf3e0"/><stop offset="60%" stop-color="#f1e4c4"/><stop offset="100%" stop-color="#e3cfa2"/></radialGradient>
+        <linearGradient id="sg" x1="0" y1="0" x2="0.6" y2="1"><stop offset="0%" stop-color="#bcd6e6"/><stop offset="100%" stop-color="#8fb4cd"/></linearGradient>
+        <filter id="glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <style>
+        .mlbl{font:700 10.5px "Inter",sans-serif;fill:#4c4030;paint-order:stroke;stroke:#f6ecd6;stroke-width:3px;stroke-linejoin:round}
+        .mlbl.big{font-size:12.5px;fill:#2a2318}
+        .mdot{fill:#fffdf8;stroke:#b07d1f;stroke-width:2.6} .mdot.mar{stroke:#33628c}
+        .wv{fill:none;stroke:#eaf3f8;stroke-width:1.6;opacity:.8;stroke-linecap:round}
+        .cart{font:800 11px "Inter",sans-serif;fill:#8a5f10;letter-spacing:.06em}
+        .cart2{font:600 9px "Inter",sans-serif;fill:#7d7260}
+      </style>
+      <rect width="380" height="510" fill="url(#pg)" rx="14"/>
+      <ellipse cx="70" cy="420" rx="60" ry="34" fill="#d9c294" opacity=".25"/>
+      <ellipse cx="330" cy="90" rx="46" ry="26" fill="#d9c294" opacity=".2"/>
+      <path d="M 114.2,502.3 L 169.3,476.1 L 216.2,457.8 L 226.7,452.1 L 234.4,447.4 L 258.6,436.9 L 282.3,433.2 L 320.9,426.9 L 354.0,431.7 L 380,431.7 L 380,510 L 74.2,510 Z" fill="url(#sg)" opacity=".9"/>
+      <path d="M 114.2,502.3 L 169.3,476.1 L 216.2,457.8 L 226.7,452.1 L 234.4,447.4 L 258.6,436.9 L 282.3,433.2 L 320.9,426.9 L 354.0,431.7" fill="none" stroke="#6e94ad" stroke-width="2" opacity=".8"/>
+      <path d="M 198.9,473.5 q 4.5,-5 9,0 q 4.5,5 9,0" class="wv"/><path d="M 237.5,465.7 q 4.5,-5 9,0 q 4.5,5 9,0" class="wv"/><path d="M 265.1,481.4 q 4.5,-5 9,0 q 4.5,5 9,0" class="wv"/><path d="M 287.1,457.8 q 4.5,-5 9,0 q 4.5,5 9,0" class="wv"/><path d="M 160.3,484.0 q 4.5,-5 9,0 q 4.5,5 9,0" class="wv"/><path d="M 309.2,450.0 q 4.5,-5 9,0 q 4.5,5 9,0" class="wv"/>
+      <text x="224.5" y="481.4" style="font:800 10px sans-serif;fill:#5d84a3;letter-spacing:2.5px" opacity=".9">OCEANO ATLÂNTICO</text>
+      <text x="258.6" y="466.7" font-size="15">⛵</text>
+      <path d="M 221.7,99.3 227.2,125.5 221.7,149.0 213.4,172.6 206.3,183.0 199.6,201.3" fill="none" stroke="#7ba8c4" stroke-width="2" opacity=".6" stroke-linecap="round"/>
+      <ellipse cx="202.4" cy="189.8" rx="7" ry="3.5" fill="#7ba8c4" opacity=".55"/>
+      <text x="224.5" y="107.1" style="font:italic 600 8.5px serif;fill:#6e94ad" opacity=".9">Rio São Francisco</text>
+      <path d="M 170.6,424.64000000000004 L 177.6,412.6 L 184.6,424.64000000000004 Z" fill="#8a6f4d" opacity="0.4"/><path d="M 181.45,424.64000000000004 L 185.65,417.85 L 189.85,424.64000000000004 Z" fill="#8a6f4d" opacity="0.27999999999999997"/><path d="M 192.6,415.74 L 199.6,403.7 L 206.6,415.74 Z" fill="#8a6f4d" opacity="0.4"/><path d="M 203.45,415.74 L 207.65,408.95 L 211.85,415.74 Z" fill="#8a6f4d" opacity="0.27999999999999997"/><path d="M 211.9,406.84000000000003 L 218.9,394.8 L 225.9,406.84000000000003 Z" fill="#8a6f4d" opacity="0.4"/><path d="M 222.75,406.84000000000003 L 226.95000000000002,400.05 L 231.15,406.84000000000003 Z" fill="#8a6f4d" opacity="0.27999999999999997"/><path d="M 232.9,396.44 L 239.9,384.4 L 246.9,396.44 Z" fill="#8a6f4d" opacity="0.4"/><path d="M 243.75,396.44 L 247.95000000000002,389.65 L 252.15,396.44 Z" fill="#8a6f4d" opacity="0.27999999999999997"/><path d="M 251.60000000000002,385.94 L 258.6,373.9 L 265.6,385.94 Z" fill="#8a6f4d" opacity="0.4"/><path d="M 262.45000000000005,385.94 L 266.65000000000003,379.15 L 270.85,385.94 Z" fill="#8a6f4d" opacity="0.27999999999999997"/><path d="M 299.0,290.14000000000004 L 306.0,278.1 L 313.0,290.14000000000004 Z" fill="#8a6f4d" opacity="0.4"/><path d="M 309.85,290.14000000000004 L 314.05,283.35 L 318.25,290.14000000000004 Z" fill="#8a6f4d" opacity="0.27999999999999997"/><path d="M 295.7,277.04 L 302.7,265.0 L 309.7,277.04 Z" fill="#8a6f4d" opacity="0.4"/><path d="M 306.55,277.04 L 310.75,270.25 L 314.95,277.04 Z" fill="#8a6f4d" opacity="0.27999999999999997"/><path d="M 289.1,262.44 L 296.1,250.39999999999998 L 303.1,262.44 Z" fill="#8a6f4d" opacity="0.4"/><path d="M 299.95000000000005,262.44 L 304.15000000000003,255.64999999999998 L 308.35,262.44 Z" fill="#8a6f4d" opacity="0.27999999999999997"/><path d="M 140.3,287.54 L 147.3,275.5 L 154.3,287.54 Z" fill="#8a6f4d" opacity="0.4"/><path d="M 151.15,287.54 L 155.35000000000002,280.75 L 159.55,287.54 Z" fill="#8a6f4d" opacity="0.27999999999999997"/><path d="M 156.8,300.64000000000004 L 163.8,288.6 L 170.8,300.64000000000004 Z" fill="#8a6f4d" opacity="0.4"/><path d="M 167.65,300.64000000000004 L 171.85000000000002,293.85 L 176.05,300.64000000000004 Z" fill="#8a6f4d" opacity="0.27999999999999997"/><path d="M 188.1,460.62 L 194.1,450.3 L 200.1,460.62 Z" fill="#5d7a5f" opacity="0.32"/><path d="M 197.4,460.62 L 201.0,454.8 L 204.6,460.62 Z" fill="#5d7a5f" opacity="0.22399999999999998"/><path d="M 210.2,453.21999999999997 L 216.2,442.9 L 222.2,453.21999999999997 Z" fill="#5d7a5f" opacity="0.32"/><path d="M 219.5,453.21999999999997 L 223.1,447.4 L 226.7,453.21999999999997 Z" fill="#5d7a5f" opacity="0.22399999999999998"/><path d="M 235.0,444.92 L 241.0,434.6 L 247.0,444.92 Z" fill="#5d7a5f" opacity="0.32"/><path d="M 244.3,444.92 L 247.9,439.1 L 251.5,444.92 Z" fill="#5d7a5f" opacity="0.22399999999999998"/><path d="M 257.0,437.52 L 263.0,427.2 L 269.0,437.52 Z" fill="#5d7a5f" opacity="0.32"/><path d="M 266.3,437.52 L 269.9,431.7 L 273.5,437.52 Z" fill="#5d7a5f" opacity="0.22399999999999998"/><path d="M 281.8,433.32 L 287.8,423.0 L 293.8,433.32 Z" fill="#5d7a5f" opacity="0.32"/><path d="M 291.1,433.32 L 294.7,427.5 L 298.3,433.32 Z" fill="#5d7a5f" opacity="0.22399999999999998"/>
+      <text x="168.1" y="429.3" style="font:italic 600 8.5px serif;fill:#7a6a4f" transform="rotate(-24 172.1 413.3)">Serra da Mantiqueira</text>
+      <text x="221.2" y="451.9" style="font:italic 600 8px serif;fill:#5d7a5f" transform="rotate(-18 227.2 436.9)">Serra do Mar</text>
+      <polyline id="rota-todo" points="" fill="none" stroke="#a2917a" stroke-width="2.6" stroke-dasharray="4 6" stroke-linejoin="round" stroke-linecap="round"/>
+      <polyline id="rota-feita" points="" fill="none" stroke="#b07d1f" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" filter="url(#glow)"/>
+      <circle cx="60.2" cy="56.9" r="5.2" class="mdot"/><circle cx="115.9" cy="131.7" r="3.8" class="mdot"/><circle cx="206.3" cy="183.0" r="3.8" class="mdot"/><circle cx="277.4" cy="273.1" r="5.2" class="mdot"/><circle cx="301.6" cy="297.7" r="5.2" class="mdot"/><circle cx="281.8" cy="303.4" r="3.8" class="mdot"/><circle cx="259.7" cy="336.9" r="3.8" class="mdot"/><circle cx="264.7" cy="335.3" r="5.2" class="mdot"/><circle cx="220.6" cy="402.3" r="3.8" class="mdot"/><circle cx="221.1" cy="437.9" r="3.8" class="mdot"/><circle cx="234.9" cy="445.8" r="5.2" class="mdot mar"/><circle cx="309.9" cy="369.4" r="3.8" class="mdot"/>
+      <text x="54.2" y="45.9" class="mlbl big">🏠 Brasília</text><text x="124.9" y="134.7" class="mlbl">Paracatu</text><text x="216.3" y="183.0" class="mlbl">Três Marias</text><text x="286.4" y="269.1" class="mlbl big">BH</text><text x="216.60000000000002" y="286.7" class="mlbl big">⛏️ Ouro Preto</text><text x="267.8" y="318.4" class="mlbl">Congonhas</text><text x="163.7" y="341.9" class="mlbl">🚂 S. J. del-Rei</text><text x="275.7" y="346.3" class="mlbl">Tiradentes</text><text x="232.6" y="406.3" class="mlbl">Passa Quatro</text><text x="157.1" y="440.9" class="mlbl">🏺 Cunha</text><text x="245.9" y="448.8" class="mlbl big">⚓ Paraty</text><text x="277.9" y="385.4" class="mlbl">Juiz de Fora</text>
+      <g transform="translate(340,52)">
+        <circle r="17" fill="#fffdf8" stroke="#c9b68d" stroke-width="1.5" opacity=".95"/>
+        <path d="M 0,-13 L 3,-3 L 13,0 L 3,3 L 0,13 L -3,3 L -13,0 L -3,-3 Z" fill="#b07d1f"/>
+        <path d="M 0,-13 L 2,-4 L 0,0 L -2,-4 Z" fill="#8a5f10"/>
+        <text y="-21" text-anchor="middle" style="font:800 9px sans-serif;fill:#8a5f10">N</text>
+      </g>
+      <g transform="translate(20,18)">
+        <rect width="168" height="42" rx="9" fill="#fffdf8" stroke="#c9b68d" stroke-width="1.4" opacity=".95"/>
+        <text x="12" y="17" class="cart">☀️ EXPEDIÇÃO SOL · 2026</text>
+        <text x="12" y="32" class="cart2">Brasília → Paraty pela Estrada Real · 3.050 km</text>
+      </g>
+      <g>
+        <rect x="26" y="479" width="145.4" height="24" rx="6" fill="#fffdf8" opacity=".85"/>
+        <line x1="32" y1="492" x2="137.4" y2="492" stroke="#4c4030" stroke-width="2"/>
+        <line x1="32" y1="488" x2="32" y2="496" stroke="#4c4030" stroke-width="2"/>
+        <line x1="84.7" y1="489" x2="84.7" y2="495" stroke="#4c4030" stroke-width="1.4"/>
+        <line x1="137.4" y1="488" x2="137.4" y2="496" stroke="#4c4030" stroke-width="2"/>
+        <text x="142.4" y="495.5" style="font:700 8.5px sans-serif;fill:#4c4030">200 km</text>
+      </g>
+      <g id="marcador" style="transition:transform .5s">
+        <circle r="12" fill="none" stroke="#a2543a" stroke-width="2" opacity=".55"><animate attributeName="r" values="10;18;10" dur="2.2s" repeatCount="indefinite"/><animate attributeName="opacity" values=".55;0;.55" dur="2.2s" repeatCount="indefinite"/></circle>
+        <circle r="11.5" fill="#fffdf8" stroke="#a2543a" stroke-width="2.6" filter="url(#glow)"/>
+        <text y="4.5" text-anchor="middle" style="font-size:12.5px">🚗</text>
+      </g>
+      <rect x="1.5" y="1.5" width="377" height="507" rx="13" fill="none" stroke="#b07d1f" stroke-width="1.2" opacity=".55"/>
+      <rect x="5.5" y="5.5" width="369" height="499" rx="10" fill="none" stroke="#b07d1f" stroke-width=".7" opacity=".35"/>
     </svg>
     <p class="mini" id="gpsmsg" style="margin:8px 0 0"></p>
     <p class="mini" style="margin:6px 0 0">🌡️ Previsão por dia nos cartões abaixo (Open-Meteo, consultada em 17/07). <span style="color:#b8a06a">*</span> = a partir de 27/07 é tendência — confira na véspera. Alertas: garoa provável no fds de Tiradentes (leve as capas de chuva) e calorão de 33°C no dia de Trindade.</p>
   </div>
 <script>
 (function(){
-var PTS=[[58.9,50.1],[73.3,98.3],[112.6,120.4],[199.6,168.6],[268.2,253.2],[291.5,276.3],[272.4,281.7],[251.2,313.2],[255.9,311.7],[215.6,354.5],[213.5,374.7],[199.6,395.8],[214.0,408.1],[227.3,415.5],[214.0,408.1],[199.6,395.8],[235.2,379.6],[306.9,361.4],[299.5,343.7],[268.2,253.2],[199.6,168.6],[112.6,120.4],[73.3,98.3],[58.9,50.1]];
+var PTS=[[60.2,56.9],[75.1,108.2],[115.9,131.7],[206.3,183.0],[277.4,273.1],[301.6,297.7],[281.8,303.4],[259.7,336.9],[264.7,335.3],[222.8,380.9],[220.6,402.3],[206.3,424.9],[221.1,437.9],[234.9,445.8],[221.1,437.9],[206.3,424.9],[243.2,407.6],[317.6,388.2],[309.9,369.4],[277.4,273.1],[206.3,183.0],[115.9,131.7],[75.1,108.2],[60.2,56.9]];
 var STOPS=[["Brasília — largada",0,0],["Paracatu",234,2],["Três Marias",500,3],["Ouro Preto",840,5],["Mariana (bate-volta)",870,5],["Congonhas",920,6],["São João del-Rei",1055,7],["Tiradentes",1070,8],["Passa Quatro / Mantiqueira",1330,10],["Cunha",1445,12],["Paraty",1495,13],["Paraty + passeios (Trindade)",1620,13],["Volta: Juiz de Fora",1980,18],["Volta: Belo Horizonte",2270,19],["Volta: Três Marias",2510,20],["Brasília — chegada!",3050,23]];
 var TOTAL=3050;
 var svgTodo=document.getElementById('rota-todo'),svgFeita=document.getElementById('rota-feita');
